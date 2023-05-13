@@ -1,0 +1,31 @@
+
+{% extends 'main.html' %}
+
+{% block title %}ПРОФИЛЬ{% endblock title %}
+{% block content %}
+    <div class="account-info">
+        <div class="account-info__logo">
+            <img class="account-info__avatar" src="{{account.photo.url}}" alt="" srcset="">
+            <p class="account-info__social-credits">{{account.rank}} <br> КРЕДИТОВ</p>
+            <p class="account-info__social-credits"><a href="/rating/">{{account.score}} место</a></p>
+        </div>
+        <div class="account-info__info">
+            <div class="account-info__name">{{account.name}}</div>
+            <div class="account-info__descrption">{{account.description}}</div>
+            <div class="account-info__email">
+                <span>Контактные данные:</span><br>
+                {{account.email}}
+            </div>
+        </div>
+    </div>
+
+    <div class="main-block">
+        <div class="projects">
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+        </div>
+    </div>
+    {% endblock content %}

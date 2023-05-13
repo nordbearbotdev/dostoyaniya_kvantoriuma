@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+	<div class="infoblock rating_row" id="id01">
+		{% for person in person %}
+			{% if person.id == 2%}
+			{% else %}
+			<div class="main_block row__block">
+				<h2>Место: {{person.score}}</h2>
+				<h2>Имя: {{person.name}}</h2>
+				<h2>Кредитов: {{person.rank}}</h2>
+				<h2>Возраст {{person.age}}</h2>
+				
+			</div>
+			{%endif%}
+		{% endfor %}
+	</div>
+{% endblock content %}
