@@ -8,7 +8,7 @@ urlpatterns = [
     path('account/<str:pk>/', views.account, name="account_home"),
     path('login/', views.login, name="login"),
     path('shop/', views.shop, name="shop"),
-    path('/buy/<str:pk>/', views.buy, name="buy"),
+    path('buy/<str:pk>/', views.buy, name="buy"),
     path("rating/", views.rating, name="rating"),
 
 ]

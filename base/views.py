@@ -4,8 +4,9 @@ from django.db.models import Q
 from django.http import HttpResponse
 from .forms import *
 from django.contrib.auth import authenticate, login
-import string   
-import random 
+import string
+import random
+
 
 def home(request):
     if "id" in request.session:
@@ -20,21 +21,20 @@ def home(request):
 
 
 def buy(request, pk):
-
     if "id" in request.session:
         id_per = int(request.session['id'])
     else:
-        return redirect('/login/')    
-    
+        return redirect('/login/')
+
     if "key" in request.session:
         return redirect("/shop/")
     else:
         account = Account.objects.get(id=id_per)
         shop = Shop.objects.get(id=pk)
         if int(account.rank >= int(shop.price)):
-            ran = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
+            ran = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
             request.session['key'] = ran
-            b = Buy(key=ran, name = str(account.name), size = str(account.size), type = str(shop.title))
+            b = Buy(key=ran, name=str(account.name), size=str(account.size), type=str(shop.title))
             account.rank = int(account.rank) - int(shop.price)
             account.save(update_fields=["rank"])
             b.save()
@@ -66,7 +66,6 @@ def project(request, pk):
     return render(request, 'base/project.html', context)
 
 
-
 def account(request, pk):
     d = request.session.get('id')
     d = "/" + str(d) + "/"
@@ -76,6 +75,7 @@ def account(request, pk):
         return render(request, 'base/account.html', context)
     else:
         return redirect('/login/')
+
 
 def login(request):
     if 'id' in request.session:
@@ -91,9 +91,9 @@ def login(request):
             except Account.DoesNotExist:
                 print("Error")
                 return redirect('/login/')
-            if(usr_account.password == cd["password"]):
+            if (usr_account.password == cd["password"]):
                 id_usr = int(usr_account.id)
-                request.session.set_expiry(24*3600)
+                request.session.set_expiry(24 * 3600)
                 request.session['id'] = id_usr
                 response = redirect(f'/account/{id_usr}/')
                 return response
@@ -105,7 +105,7 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'base/login.html', {'form': form})
-    
+
 
 def kvantum(request):
     if "id" in request.session:
@@ -118,23 +118,24 @@ def kvantum(request):
     context = {'projects': projects, 'account': account}
     return render(request, 'base/kvantum.html', context)
 
+
 def rating(request):
     if "id" in request.session:
         id_per = int(request.session['id'])
     else:
         return redirect('/login/')
     account = Account.objects.get(id=id_per)
-    rank  = Account.objects.all().order_by("-rank")
+    rank = Account.objects.all().order_by("-rank")
     context = {'person': rank, "account": account}
     return render(request, 'base/rating.html', context)
+
 
 def shop(request):
     if "id" in request.session:
         id_per = int(request.session['id'])
     else:
-        id_per = 2
+        return redirect('/login/')
     account = Account.objects.get(id=id_per)
     shop = Shop.objects.all().order_by("-price")
     context = {'account': account, "shop": shop}
     return render(request, 'base/shop.html', context)
-

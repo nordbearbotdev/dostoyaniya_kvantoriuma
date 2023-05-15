@@ -1,4 +1,4 @@
-* {
+							* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -82,13 +82,12 @@ header{
 	visibility: hidden;
 	display: flex;
 	position: absolute;
-	transition: 0.2s;
+	transition: visibility, opacity 0.2s .24s;
 	transform: rotateX(10);
 }
 .search:hover > span{
 	opacity: 1;
 	visibility: visible;
-	transition: 0.5s;
 }
 .search > span > input{
 	padding: 5px;
@@ -102,7 +101,6 @@ header{
 }
 .search:hover > img{
 	transform: rotate(90deg);
-	transition: 0.5s;
 }
 .submit{
 	font-weight: bold;
@@ -113,6 +111,18 @@ header{
 .account-info {
     display: flex;
     margin-top: calc(var(--index) * 2);
+	opacity: 0;
+	transform: translateY(200px);
+}
+.account-info.element-show{
+	-webkit-animation-duration: 1.1s;
+	animation-duration: 1.1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+	opacity: 1;
+	transform: translateY(0px);
 }
 .account-info__logo {
     width: calc(var(--index) * 8);
@@ -120,14 +130,22 @@ header{
 .account-info__avatar {
     width: calc(var(--index) * 8);
     height: calc(var(--index) * 8);
-    margin: 0 50px 0 0;
     box-shadow: 0 0 5px 5px white;
 }
+.account-info__name {
+	font-size: calc(var(--index) * 1);
+	font-weight: bold;
+}
 .account-info__info{
-	font-size: 24px;
+	font-size: calc(var(--index) * .6);
 	margin-left: 60px;
 }
-
+.account-info__email {
+	font-size: calc(var(--index) * .65);
+}
+.account-info__email span{
+	font-size: calc(var(--index) * .7);
+}
 .account-info__social-credits {
 	text-align: center;
     width: calc(var(--index) * 8);
@@ -135,6 +153,17 @@ header{
 	margin-top: 10px;
 	font-size: 24px;
     overflow:auto;
+}
+.account-info__score {
+	text-decoration: underline;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: calc(var(--index) * .5);
+}
+.account-info__score img {
+	height: 25px;
 }
 :active, :hover :focus {
     outline: 0;
@@ -156,11 +185,13 @@ header{
 }
 
 .registration-cssave {
+	transform: translateY(200px);
+	opacity: 0;
 	display: block;
 	margin: calc(var(--index) * 2) 0;
 }
 .registration-cssave__form {
-	width: calc(var(--index) * 13);
+	max-width: 500px;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -175,20 +206,78 @@ header{
 }
 .form-group p{
 	display: flex;
-	font-size: calc(var(--index) * .6);
+	font-size: 20px;
 	flex-wrap: nowrap;
 }
 .form-group label {
 	margin-right: 10px;
 }
 .form-group input {
-	font-size: calc(var(--index) * .55);
+	background-color: rgba(0, 0, 0, 0);
+	font-size: 20px;
 	width: 100%;
 }
+#id_login{
+	tab-size: 1;
+}
+#id_password {
+	tab-size: 2;
+}
 .form-group input:focus {
-	border-bottom: 1px solid white ;
+	box-shadow: 0 1px 0 0 white;
 }
 .login_button {
-	padding: 5px;
+	padding: 10px;
+	background-color: black;
 	border: 1px solid white;
+	font-size: 20px;
+	transition: 0.4s ease;
+}
+.login_button:hover {
+	background-color: white;
+	color: black;
+}
+.registration-cssave.element-show{
+	-webkit-animation-duration: 1.1s;
+	animation-duration: 1.1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+	opacity: 1;
+	transform: translateY(0px);
+}
+.shop__block img {
+	height:  200px;
+}
+.shop__block {
+	margin: 0 calc(var(--index));
+	transform: translateY(100px);
+	text-align: center;
+	opacity: 0;
+	transition: all 0.4s;
+}
+.shop__block h2 {
+	font-size: 20px;
+}
+.shop__block button {
+	background-color: black;
+	border: 1px solid white;
+	padding: 10px;
+	font-size: 20px;
+	transition: .2s;
+}
+.shop__block button:hover {
+	background-color: white;
+	color: black;
+}
+.shop__block.element-show {
+	-webkit-animation-duration: 1.1s;
+	animation-duration: 1.1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+	opacity: 1;
+	transform: translateY(0px);
 }

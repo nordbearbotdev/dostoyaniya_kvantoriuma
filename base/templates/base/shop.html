@@ -1,46 +1,25 @@
-<!DOCTYPE html>
-
-
+{% extends 'main.html' %}
 {% load static %}
-<head>
-   	<meta charset="utf-8">
-   	<title>KVANTORIUM REWARDS</title>
-	<!--flexible width of-->
-   	<meta name="viewport" content="width=device-width, user-scalable=no; initial-scale=1.0">
-	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'logotip/apple-touch-icon.png' %}">
-	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'logotip/favicon-32x32.png' %}">
-	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'logotip/favicon-16x16.png' %}">
-	<link rel="manifest" href="{% static 'logotip/site.webmanifest' %}">
-	<link href = "{% static 'fonts/stylesheet.css' %}" rel = "stylesheet" type = "text/css" >
-	<!--style-->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	<!--bootstrap-->
-</head>
-<body>
-	<div class="container">
-		<header>
-			<a href="/"><img src="{% static 'img/icon.png' %}" class="logo"></a>
-			<form action="{% url 'home' %}" method="get" class="search">
-				<img src="{% static 'img/search.png' %}" style="height: 30px;" alt=""><span><input name="q" type="text" class="field"><input  type="submit" value="Найти" class="submit"></span>
-			</form>
-			<a href="/login/"><img class="account-info__avatar" style=" width: 50px; height: 50px; box-shadow: 0 0 2px 2px white;" src="{{account.photo.url}}" alt="" srcset=""></a>
-			<a class="search_mobile" href=""><img src="{% static 'img/search.png' %}" style="height: 30px; filter: invert();" alt=""></a>
-		</header>
-		<h1 class="heading">{% block title %}МАГАЗИН КВАНТОРИУМА{% endblock title %}</h1>
+
+{% block title %}МАГАЗИН КВАНТОРИУМА{% endblock title %}</h1>
 		
-		{% block content %}
-		<div class="infoblock" id="id01">
-			{% for shop in shop %}
-				<div class="main_block Maths">
-					<h2>Название: {{shop.title}}</h2>
-					<h2>Стоимость: {{shop.price}}</h2>
-					<a onclick="location.href='{% url 'buy' shop.id %}';" style="z-index: 7; opacity: 1; position: relative; color: rgb(0,0,0); font-size: 130%; margin: 10px 0; margin-top: 900px; font-size: 50px;">Купить</a>
-					<img src="{{shop.photo.url}}" alt="{{project.photo}}" srcset="">
-				</div>
-			{% endfor %}
+{% block filters %}
+<div class="filters">
+	<button onclick="sortList()" class="filter" style="height: 20px;"><img src="{% static 'img/alphabet-up.png' %}" alt="">Возрастание</button>
+	<button onclick="sortListY()" class="filter"><img src="{% static 'img/alphabet-down.png' %}" alt="">Убывание</button>	
+</div>
+{% endblock filters %}
+
+{% block content %}
+<div class="infoblock" id="id01">
+	{% for shop in shop %}
+		<div class="shop__block">
+			<img src="{{shop.photo.url}}" alt="{{project.photo}}" srcset="">
+			<h2>{{shop.title}}</h2>
+			<h2>{{shop.price}} Кредитов</h2>
+			<button onclick="location.href='{% url 'buy' shop.id %}';">Купить</button>
 		</div>
-		{% endblock content %}
-		{% include 'footer.html' %}
-	</div>
-	<script src="{% static 'js/script.js' %}"></script>
-</body>
+	{% endfor %}
+</div>
+{% endblock content %}
+{% block script %}<script src="{% static 'js/shop.js' %}"></script>{% endblock script %}

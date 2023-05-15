@@ -184,19 +184,9 @@ header{
 	left: -285px;
 	transition: 0.7s;
 }
-.search > span{
-	left: 30px;
-	opacity: 0;
-	visibility: hidden;
-	display: flex;
-	position: absolute;
-	transition: 0.2s;
-	transform: rotateX(10);
-}
 .search:hover > span{
 	opacity: 1;
 	visibility: visible;
-	transition: 0.5s;
 }
 .search > span > input{
 	padding: 5px;
@@ -515,6 +505,8 @@ p{
 footer{
 	-webkit-animation-duration: 1.3s;
 	animation-duration: 1.3s;
+	-webkit-animation-delay: .2s;
+	animation-delay: .2s;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 	-webkit-animation-name: fadeOut;
@@ -752,6 +744,9 @@ span.sim-dot {
 	footer{
 		display: block;
 	}
+	.foot {
+		margin-right: 0px;
+	}
 	#pppBtn{
 		display: none;
 	}
@@ -789,7 +784,9 @@ span.sim-dot {
 	.popup_content {
 		margin-left: 220px;
 	}
-
+	.shop__block {
+		margin: 0 5px 0;
+	}
 
 }
 

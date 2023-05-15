@@ -269,5 +269,5 @@ let popup = document.getElementById('popup'),
       }
     }
   };
-  
   new Sim();
+
